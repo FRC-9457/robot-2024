@@ -22,8 +22,8 @@ public final class Constants {
   }
 
   public static class DriveBaseConstants {
-    public static final int LeftMotorA = 3;
-    public static final int LeftMotorB = 4;
+    public static final int LeftMotorA = 4;
+    public static final int LeftMotorB = 3;
     public static final int RightMotorA = 10;
     public static final int RightMotorB = 2;
 
@@ -35,8 +35,8 @@ public final class Constants {
   }
 
   public static class ClimberConstants {
-    public static final int leftClimberMotor = 7;
-    public static final int rightClimberMotor = 9;
+    public static final int leftClimberMotor = 9;
+    public static final int rightClimberMotor = 7;
 
   }
 }

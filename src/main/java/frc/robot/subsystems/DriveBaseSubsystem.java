@@ -39,6 +39,10 @@ public class DriveBaseSubsystem extends SubsystemBase {
             rightMotorB = new CANSparkMax(Constants.DriveBaseConstants.RightMotorB, MotorType.kBrushed);
         }
         
+        // leftMotorA.setInverted(true);
+        // leftMotorB.setInverted(true);
+        // rightMotorA.setInverted(true);
+        // rightMotorB.setInverted(true);
         leftMotorA.follow(leftMotorB);
         rightMotorA.follow(rightMotorB);
         robotDrive = new DifferentialDrive(leftMotorB, rightMotorB);
