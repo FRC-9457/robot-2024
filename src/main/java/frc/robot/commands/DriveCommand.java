@@ -15,8 +15,9 @@ public class DriveCommand extends Command {
   private DriveBaseSubsystem driveBaseSubsystem;
   private DoubleSupplier speedSupplier;
   private DoubleSupplier rotationSupplier;
-  private SlewRateLimiter speedLimiter = new SlewRateLimiter(0.5); // speed change it was 2.0
-  
+  private SlewRateLimiter rotationLimiter = new SlewRateLimiter(0.5); // speed change it was 2.0
+  private SlewRateLimiter speedLimiter = new SlewRateLimiter(4.0); // speed change it was 2.0
+
 
   /** Creates a new DriveCommand. */
   public DriveCommand(DriveBaseSubsystem driveBaseSubsystem, DoubleSupplier speedSupplier,
@@ -31,9 +32,11 @@ public class DriveCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    double rotation = rotationSupplier.getAsDouble();
     double speed = speedSupplier.getAsDouble();
+    rotation = rotationLimiter.calculate(rotation);
     speed = speedLimiter.calculate(speed);
-    driveBaseSubsystem.drive(speed, rotationSupplier.getAsDouble());
+    driveBaseSubsystem.drive(speed, rotation);
   }
 
   // Called once the command ends or is interrupted.
@@ -47,6 +50,7 @@ public class DriveCommand extends Command {
     return false;
   }
   public void updateRateLimiter (NetworkTableEvent event) {
+    rotationLimiter = new SlewRateLimiter(event.valueData.value.getDouble());
     speedLimiter = new SlewRateLimiter(event.valueData.value.getDouble());
   }
 }
