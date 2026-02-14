@@ -15,7 +15,7 @@ public class DriveCommand extends Command {
   private DriveBaseSubsystem driveBaseSubsystem;
   private DoubleSupplier speedSupplier;
   private DoubleSupplier rotationSupplier;
-  private SlewRateLimiter rotationLimiter = new SlewRateLimiter(0.5); // speed change it was 2.0
+  private SlewRateLimiter rotationLimiter = new SlewRateLimiter(4.0); // speed change it was 2.0
   private SlewRateLimiter speedLimiter = new SlewRateLimiter(4.0); // speed change it was 2.0
 
 
