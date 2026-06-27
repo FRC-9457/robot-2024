@@ -49,7 +49,7 @@ public class DriveBaseSubsystem extends SubsystemBase {
     }
 
     public void drive(double speed, double rotation) {
-        robotDrive.arcadeDrive(speed, rotation);
+        robotDrive.arcadeDrive(speed*.6, rotation);
     }
 
     private void simulationInit() {
